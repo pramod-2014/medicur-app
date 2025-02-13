@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healtapp-eta-deploy
+  labels:
+    app: healtapp-eta-eta-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: healtapp-eta-eta-app
+  template:
+    metadata:
+      labels:
+        app: healtapp-eta-eta-app
+    spec:
+      containers:
+      - name: healtapp-eta-eta-container
+        image: prmd77/healtapp-eta-eta-app
+        ports:
+        - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: healtapp-eta-eta-np-service
+  labels:
+    app: healtapp-eta-eta-app
+spec:
+  selector:
+    app: healtapp-eta-eta-app
+
+  type: NodePort
+  ports:
+  - nodePort: 32030  
+    port: 8082
+    targetPort: 8082
