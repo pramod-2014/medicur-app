@@ -1,34 +1,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: healtapp-eta-deploy
+  name: health-app-eta-deploy
   labels:
-    app: healtapp-eta-eta-app
+    app: health-app-eta-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: healtapp-eta-eta-app
+      app: health-app-eta-app
   template:
     metadata:
       labels:
-        app: healtapp-eta-eta-app
+        app: health-app-eta-app
     spec:
       containers:
-      - name: healtapp-eta-eta-container
-        image: prmd77/healtapp-eta-eta-app
+      - name: health-app-eta-container
+        image: prmd77/health-app-eta-app
         ports:
         - containerPort: 8082
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: healtapp-eta-eta-np-service
+  name: health-app-eta-np-service
   labels:
-    app: healtapp-eta-eta-app
+    app: health-app-eta-app
 spec:
   selector:
-    app: healtapp-eta-eta-app
+    app: health-app-eta-app
 
   type: NodePort
   ports:
